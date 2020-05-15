@@ -1,2 +1,54 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# -*- coding: utf-8 -*-
+"""
+Created on Fri May 15 10:51:22 2020
+
+@author: lolbu
+"""
+
+#someone help me
+
+#CONNECT 4
+
+board = [['0' for x in range(7)] for x in range(6)]
+
+ROW_count=7
+COLUMN_count= 6
+def printBoard(board):
+    for row in board:
+        print(row)
+
+printBoard(board)
+     
+def drop_piece(board,row,coln,piece):
+    board,[row],[coln] = piece
+
+def is_valid_location(board,coln): 
+    return board[5][coln] == 0
+
+def get_next_open_row(board,coln):
+    for x in range(ROW_count-1):
+        if board[x][coln]==0:
+            return x
+
+wincon= False
+move=0
+while not wincon:
+    #player 1
+    if move ==  0:
+        coln=(int(input("Player 1 input a number 0-6:")))
+        print(coln)
+        if is_valid_location(board, coln):
+            row = get_next_open_row(board,coln)
+            drop_piece(board,row,coln, 1)
+        print(board)
+        
+    else:#player 2
+        coln=(int(input("Player 2 input a number 0-6:")))
+        print(coln)
+        if is_valid_location(board, coln):
+            row = get_next_open_row(board,coln)
+            drop_piece(board,row,coln, 2)
+        print(board)
+        
+    move += 1
+    move = move % 2
